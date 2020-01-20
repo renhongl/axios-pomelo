@@ -1,8 +1,15 @@
 {
   "name": "axios-pomelo",
-  "version": "1.0.9",
-  "description": "Easy to fetch data",
+  "version": "1.0.10",
+  "description": "Fetch based tool to request data from browser and node.js",
   "main": "./lib/axios.min.js",
+  "keywords": [
+    "xhr",
+    "http",
+    "ajax",
+    "promise",
+    "fetch"
+  ],
   "scripts": {
     "test": "jest",
     "build": "webpack --env.production",
@@ -10,8 +17,7 @@
     "start": "webpack-dev-server",
     "dev": "webpack"
   },
-  "keywords": [],
-  "author": "",
+  "author": "renhongl",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.8.3",

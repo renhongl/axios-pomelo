@@ -1,9 +1,6 @@
 
 
 
-# How to use webpack to build npm package
-
-* Webpack output config change: `libraryTarget: 'umd'`
 
 ## Jest not working
 
@@ -13,12 +10,13 @@
 
 ## Can not import axios after install this package
 
-* Mark webpack output config to `libraryTarget: 'umd'`, because node modules are commonjs style
-* ES6 import can support commonjs style
+* Mark webpack output config to `libraryTarget: 'umd'`, this is for all module system
+
 
 
 ## Got error when use async function
 * Install package `@babel/polyfill`
+* Import it `require('@babel/polyfill)`
 
 
 ## Can not do test on browser and node.js environment and build npm package at the same time

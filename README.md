@@ -2,10 +2,11 @@
 
 # axios-pomelo
 
-Easy way to fetch data
+Fetch based tool to request data from browser and node.js
 
-* Like axios
 
-* Make XMLHttpRequest from the browser
+* Make fetch requests from the browser
 
 * Make http requests from node.js
+
+
