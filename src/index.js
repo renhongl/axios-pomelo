@@ -2,13 +2,41 @@
 const axios = require('./axios');
 
 
-// axios.get('https://api.imjad.cn/cloudmusic/?type=song&id=28012031').then(res => {
-//     console.log(res);
-// });
+axios.interceptors.request.use(function(config) {
+    config.headers.token = 'token00001';
+    return config;
+});
+
+axios.interceptors.request.use(function(config) {
+    config.headers.aaa = 'aaabbb';
+    return config;
+});
+
+axios.interceptors.response.use(function(config) {
+    config.headers.test = 'aaabbb';
+    return config;
+});
 
 axios({
-    url: 'https://api.imjad.cn/cloudmusic/?type=song&id=28012031',
-    method: 'POST'
+    url: '/test.json',
+    method: 'GET',
+    headers: {
+        a: 'b',
+        mode: 'no-cors',
+    },
+    data: JSON.stringify({"page": 1, "maxResult": 10})
+}).then(res => {
+    console.log(res);
+});
+
+axios.create({
+    url: '/test.json',
+    method: 'GET',
+    headers: {
+        a: 'b',
+        mode: 'no-cors',
+    },
+    data: JSON.stringify({"page": 1, "maxResult": 10})
 }).then(res => {
     console.log(res);
 });

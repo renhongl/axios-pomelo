@@ -9,7 +9,7 @@ module.exports = env => {
     if (env) {
         return {
             mode: 'production',
-            entry: './src/axios.js',
+            entry: ['@babel/polyfill', './src/axios.js'],
             output: {
                 filename: 'axios.min.js',
                 libraryTarget: 'umd',
@@ -38,7 +38,7 @@ module.exports = env => {
 
     return {
         mode: 'development',
-        entry: './src/index.js',
+        entry: ['@babel/polyfill', './src/index.js'],
         output: {
             filename: 'bundle.js',
             libraryTarget: 'umd',

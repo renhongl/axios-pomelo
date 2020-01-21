@@ -1,6 +1,6 @@
 {
   "name": "axios-pomelo",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Fetch based tool to request data from browser and node.js",
   "main": "./lib/axios.min.js",
   "keywords": [

@@ -47,8 +47,12 @@ function isBrowser() {
     return toString.call(global) === '[object Window]';
 }
 
+/**
+ * Merge multiple objects to a new one
+ * @param {Object} obj 
+ */
 function merge(obj /**, obj1, obj2, obj3 */) {
-    let result = [];
+    let result = {};
     forEach(arguments, function(obj) {
         forEach(obj, function(val, key) {
             result[key] = val;
@@ -61,6 +65,11 @@ function trim(str) {
     return str.replace(/^\s*|\s$/, '');
 }
 
+/**
+ * Loop array or object
+ * @param {Object} obj 
+ * @param {Function} fn 
+ */
 function forEach(obj, fn) {
     if (isNull(obj) || isUndefined(obj)) {
         return;

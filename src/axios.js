@@ -1,6 +1,8 @@
 
-require("@babel/polyfill");
+// require("@babel/polyfill");
 const utils = require('./utils');
+const request = require('./request');
+const Interceptor = require('./interceptor');
 
 const TYPES = ['get', 'post', 'options', 'put', 'delete'];
 
@@ -9,10 +11,11 @@ const TYPES = ['get', 'post', 'options', 'put', 'delete'];
  * @param {Object} config 
  */
 function Axios(config) {
-  const defaults = {
-    method: 'get',
+  this.config = config;
+  this.interceptors = {
+    request: new Interceptor(),
+    response: new Interceptor(),
   };
-  this.config = utils.merge(defaults, config);
   let _this = this;
   return new Proxy(this.request, {
     apply(target, thisArg, args) {
@@ -27,41 +30,13 @@ function Axios(config) {
 /**
  * All different request function will come to here
  */
-Axios.prototype.request = async function (config) {
-  if (!utils.isBrowser()) {
-    return await this.http(config);
-  } else {
-    return await this.fetch(config);
-  }
-}
+Axios.prototype.request = function(config) {
+  return request.call(this, config);
+};
 
-/**
- * For node environment
- */
-Axios.prototype.http = async function(config) {
-  const https = require('https');
-  return new Promise(function(resolve, reject) {
-    return https.get(config.url, function(res) {
-      let data = '';
-      // A chunk of data has been recieved.
-      res.on('data', (chunk) => {
-        data += chunk;
-      });
 
-      // The whole response has been received. Print out the result.
-      res.on('end', () => {
-        resolve(JSON.parse(data));
-      });
-    });
-  });
-}
-
-/**
- * For browser environment
- */
-Axios.prototype.fetch = async function(config) {
-  const res = await fetch(config.url, {...config});
-  return res.json();
+Axios.prototype.create = function(config) {
+  return new Axios()(config);
 }
 
 /**
